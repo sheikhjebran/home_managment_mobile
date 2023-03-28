@@ -12,7 +12,8 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.menu, color: Colors.black),
-        title: Text(tAppName, style: Theme.of(context).textTheme.headline4),
+        title:
+            Text(tAppName, style: Theme.of(context).textTheme.headlineMedium),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,

@@ -43,7 +43,7 @@ class InitWidget extends StatelessWidget {
               children: [
                 TextSpan(
                     text: tAlreadyHaveAccount,
-                    style: Theme.of(context).textTheme.bodyText1),
+                    style: Theme.of(context).textTheme.bodyLarge),
                 TextSpan(text: tLogin.toUpperCase()),
               ],
             ),

@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         title: Text(
           tProfile,
-          style: Theme.of(context).textTheme.headline3,
+          style: Theme.of(context).textTheme.displaySmall,
         ),
         actions: [
           IconButton(
@@ -47,11 +47,11 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   tProfileHeading,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Text(
                   tProfileSubHeading,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                          primary: tPrimaryColor,
+                          backgroundColor: tPrimaryColor,
                           side: BorderSide.none,
                           shape: const StadiumBorder()),
                       child: const Text(tEditProfile,

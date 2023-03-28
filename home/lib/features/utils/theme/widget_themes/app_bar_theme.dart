@@ -4,17 +4,17 @@ import 'package:home/constants/colors.dart';
 class TAppBarTheme {
   TAppBarTheme._();
 
-  static final lightAppBarTheme = AppBarTheme(
+  static const lightAppBarTheme = AppBarTheme(
     backgroundColor: Colors.transparent,
     elevation: 0,
     centerTitle: true,
-    iconTheme: const IconThemeData(color: Colors.black),
+    iconTheme: IconThemeData(color: Colors.black),
   );
 
-  static final darkAppBarTheme = AppBarTheme(
+  static const darkAppBarTheme = AppBarTheme(
     backgroundColor: Colors.transparent,
     elevation: 0,
     centerTitle: true,
-    iconTheme: const IconThemeData(color: tPrimaryColor),
+    iconTheme: IconThemeData(color: tPrimaryColor),
   );
 }

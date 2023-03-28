@@ -27,11 +27,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
     final String? uid = prefs.getString('uid');
     // ignore: unrelated_type_equality_checks
-    if (uid == null) {
-      Navigator.pushReplacementNamed(context, '/login');
-    } else {
-      Navigator.pushReplacementNamed(context, '/home');
-    }
+    uid == null ? newUser() : authenticatedUser();
+  }
+
+  void newUser() async {
+    Navigator.pushReplacementNamed(context, '/login');
+  }
+
+  void authenticatedUser() async {
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   Widget initWidget() {

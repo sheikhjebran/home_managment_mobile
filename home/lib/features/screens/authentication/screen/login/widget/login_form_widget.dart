@@ -16,10 +16,10 @@ class LoginForm extends StatelessWidget {
 
   Widget initWidget(BuildContext context) {
     final controller = Get.put(SignInController());
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: Column(
@@ -61,7 +61,7 @@ class LoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       try {
                         SignInController.instance.signInUsingEmailAndPassword(
                             controller.email.text.trim(),

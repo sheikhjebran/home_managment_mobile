@@ -37,10 +37,12 @@ class AuthenticationRepository extends GetxController {
           : Get.offAll(() => const LoginScreen());
     } on FirebaseException catch (e) {
       final ex = SignUpWithEmailPasswordFailure.code(e.code);
+      // ignore: avoid_print
       print('FIREBASE AUTH EXCEPTION ${ex.message}');
       throw ex;
     } catch (_) {
       const ex = SignUpWithEmailPasswordFailure();
+      // ignore: avoid_print
       print('FIREBASE AUTH EXCEPTION ${ex.message}');
       throw ex;
     }
@@ -58,6 +60,7 @@ class AuthenticationRepository extends GetxController {
       }
     } on FirebaseException catch (e) {
       final ex = SignUpWithEmailPasswordFailure.code(e.code);
+      // ignore: avoid_print
       print('FIREBASE EXCEPTION ${ex.message}');
       throw ex;
     } catch (_) {}

@@ -8,9 +8,9 @@ class TOutlinedButtonTheme {
 
   static final lightOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
+        foregroundColor: tSecondaryColor,
         minimumSize: const Size(30.0, tButtonHeight),
         elevation: 0,
-        primary: tSecondaryColor,
         side: const BorderSide(color: tSecondaryColor),
         padding: const EdgeInsets.symmetric(
             vertical: tButtonHeight, horizontal: tButtonHeight),
@@ -20,8 +20,8 @@ class TOutlinedButtonTheme {
 
   static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
+        foregroundColor: tPrimaryColor,
         elevation: 0,
-        primary: tPrimaryColor,
         side: const BorderSide(color: tPrimaryColor),
         padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
         shape:
