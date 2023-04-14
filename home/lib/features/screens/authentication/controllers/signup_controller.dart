@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../repository/authentication_repository/authentication_repository.dart';
+import '../../core/screens/dashboard/dashboard.dart';
+import '../screen/login/login_screen.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
