@@ -17,4 +17,8 @@ class Go {
   static void BackTo(BuildContext context, String routeName) {
     Navigator.popAndPushNamed(context, routeName);
   }
+
+  static void back(BuildContext context) {
+    Navigator.pop(context);
+  }
 }

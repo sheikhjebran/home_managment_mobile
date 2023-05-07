@@ -6,6 +6,8 @@ import 'package:home/constants/image_strings.dart';
 import 'package:home/constants/text_strings.dart';
 import 'package:home/features/screens/core/screens/profile/widget/profile_menu.dart';
 
+import '../../../../routing/routing.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -16,7 +18,9 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Go.back(context);
+          },
           icon: const Icon(LineAwesomeIcons.angle_left),
         ),
         title: Text(
@@ -57,7 +61,9 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                     width: 200,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Go.To(context, '/update_profile');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: tPrimaryColor,
                           side: BorderSide.none,
