@@ -20,3 +20,9 @@ web 1:251304224452:web:98bbf005061a7c2f234b91
 android 1:251304224452:android:7790136438aa2cf3234b91
 ios 1:251304224452:ios:632395927ca6caa0234b91
 macos 1:251304224452:ios:632395927ca6caa0234b91
+
+### update the pub major version
+
+```
+flutter pub upgrade --major-versions
+```

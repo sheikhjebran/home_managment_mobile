@@ -18,7 +18,9 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Go.back(context);
+          },
           icon: const Icon(LineAwesomeIcons.angle_left),
         ),
         title: Text(
@@ -59,7 +61,9 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                     width: 200,
                     child: ElevatedButton(
-                      onPressed: () {Go.To(context, '/update_profile');},
+                      onPressed: () {
+                        Go.To(context, '/update_profile');
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: tPrimaryColor,
                           side: BorderSide.none,

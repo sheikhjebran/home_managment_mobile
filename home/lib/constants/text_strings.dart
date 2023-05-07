@@ -36,10 +36,8 @@ const String tOtpTitles = "CO\nDE";
 const String tOtpSubTitle = "Verification";
 const String tOtpMessage = "Enter the verification code send at ";
 
-
 //-- Dashboard Screen
 const String tAppName = "RentApp";
-
 
 //-- profile Screen
 const String tProfile = "Profile";
@@ -50,13 +48,14 @@ const String tProfileSubHeading = "sheikhjebran@gmail.com";
 
 //--Menu
 const String tLogout = "Logout";
-const String tMenu1= "Settings";
-const String tMenu2= "Billing Details";
-const String tMenu3= "User Management";
-const String tMenu4= "Information";
+const String tMenu1 = "Settings";
+const String tMenu2 = "Billing Details";
+const String tMenu3 = "User Management";
+const String tMenu4 = "Information";
 const String tMenu5 = tLogout;
 
 //- Update profile Screen -Text
 const String tDelete = "Delete";
 const String tJoined = "Joined";
 const String tJoinedAt = "14 March 2023";
+const String tUpdateProfileButton = "Update Profile";

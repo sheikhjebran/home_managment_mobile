@@ -3,6 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:home/constants/text_strings.dart';
 import 'package:home/features/screens/authentication/controllers/signup_controller.dart';
+import 'package:home/features/screens/authentication/models/user_model.dart';
 
 class SingUpFormWidget extends StatelessWidget {
   const SingUpFormWidget({
@@ -64,9 +65,13 @@ class SingUpFormWidget extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      SignUpController.instance.registerUser(
-                          controller.email.text.trim(),
-                          controller.password.text.trim());
+                      final user = UserModel(
+                          email: controller.email.text.trim(),
+                          password: controller.password.text.trim(),
+                          fullName: controller.fullName.text.trim(),
+                          phoneNumber: controller.phoneNo.text.trim());
+
+                      SignUpController.instance.createUser(user);
                     }
                   },
                   child: Text(tSignUp.toUpperCase()),
