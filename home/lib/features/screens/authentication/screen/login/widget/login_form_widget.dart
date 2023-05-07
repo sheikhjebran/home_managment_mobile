@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:home/constants/text_strings.dart';
 import 'package:home/features/routing/routing.dart';
@@ -60,15 +60,22 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       try {
-                        SignInController.instance.signInUsingEmailAndPassword(
-                            controller.email.text.trim(),
-                            controller.password.text.trim());
-                        Go.NavigateReplacement(context, '/home');
-                        // ignore: empty_catches
-                      } catch (error) {}
+                        await SignInController.instance
+                            .signInUsingEmailAndPassword(
+                                controller.email.text.trim(),
+                                controller.password.text.trim());
+                        // ignore: use_build_context_synchronously
+                        Go.BackTo(context, '/home');
+                      } catch (error) {
+                        Get.snackbar(
+                            "Login Error", "Username or password is invalid",
+                            snackPosition: SnackPosition.TOP,
+                            colorText: Colors.black,
+                            backgroundColor: Colors.yellow[400]);
+                      }
                     }
                   },
                   child: Text(tLogin.toUpperCase())),

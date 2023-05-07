@@ -9,9 +9,14 @@ class SignInController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
 
-  void signInUsingEmailAndPassword(String email, String password) {
+  Future<void> signInUsingEmailAndPassword(
+      String email, String password) async {
     Get.lazyPut(() => AuthenticationRepository());
-    AuthenticationRepository.instance
-        .loginUserWithEmailAndPassword(email, password);
+    try {
+      await AuthenticationRepository.instance
+          .loginUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      throw Exception(error);
+    }
   }
 }

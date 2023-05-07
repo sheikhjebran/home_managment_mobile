@@ -52,7 +52,6 @@ class AuthenticationRepository extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       final prefs = await SharedPreferences.getInstance();
-
       var value = fireabaseUser.value;
       if (value != null) {
         prefs.setString('uid', value.toString());
@@ -61,8 +60,13 @@ class AuthenticationRepository extends GetxController {
       final ex = SignUpWithEmailPasswordFailure.code(e.code);
       // ignore: avoid_print
       print('FIREBASE EXCEPTION ${ex.message}');
-      throw ex;
-    } catch (_) {}
+      throw Exception(ex);
+    } catch (_) {
+      const ex = SignUpWithEmailPasswordFailure();
+      // ignore: avoid_print
+      print('FIREBASE AUTH EXCEPTION ${ex.message}');
+      throw Exception(ex);
+    }
   }
 
   Future<void> logout() async => await _auth.signOut();
