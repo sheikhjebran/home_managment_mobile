@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:home/constants/colors.dart';
@@ -7,6 +8,7 @@ import 'package:home/constants/text_strings.dart';
 import 'package:home/features/screens/core/screens/profile/widget/profile_menu.dart';
 
 import '../../../../routing/routing.dart';
+import '../../controllers/profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    Get.lazyPut(() => ProfileController());
 
     return Scaffold(
       appBar: AppBar(
@@ -91,7 +94,10 @@ class ProfileScreen extends StatelessWidget {
                   icon: LineAwesomeIcons.alternate_sign_out,
                   textColor: Colors.red,
                   endIcon: false,
-                  onPress: () {},
+                  onPress: () {
+                    ProfileController.instance.logout();
+                    Go.NavigateReplacement(context, '/login');
+                  },
                 ),
               ],
             )),

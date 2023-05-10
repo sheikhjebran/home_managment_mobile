@@ -11,7 +11,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.menu, color: Colors.black),
+        // leading: const Icon(Icons.menu, color: Colors.black),
         title: Text(
           tAppName,
           style: Theme.of(context).textTheme.displaySmall,

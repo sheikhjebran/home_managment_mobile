@@ -1,16 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home/features/screens/authentication/models/user_model.dart';
 import 'package:home/repository/authentication_repository/authentication_repository.dart';
 import 'package:home/repository/user_repository/user_repository.dart';
 
 class ProfileController extends GetxController {
   static ProfileController get instance => Get.find();
-
-  //- Text editing controller
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final phoneNo = TextEditingController();
-  final fullName = TextEditingController();
 
   final _authRepo = Get.put(AuthenticationRepository());
   final _userRepo = Get.put(UserRepository());
@@ -22,5 +16,14 @@ class ProfileController extends GetxController {
     } else {
       Get.snackbar("Error", "Login To Continue...");
     }
+  }
+
+  updateProfile(UserModel user) async {
+    await _userRepo.updateUser(user);
+  }
+
+  logout() async {
+    Get.lazyPut(() => AuthenticationRepository());
+    await AuthenticationRepository.instance.logout();
   }
 }
