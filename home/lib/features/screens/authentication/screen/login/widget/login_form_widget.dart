@@ -38,6 +38,7 @@ class LoginForm extends StatelessWidget {
             ),
             TextFormField(
               controller: controller.password,
+              obscureText: true,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.fingerprint),
                   labelText: passwordText,
@@ -62,20 +63,18 @@ class LoginForm extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      try {
-                        await SignInController.instance
-                            .signInUsingEmailAndPassword(
-                                controller.email.text.trim(),
-                                controller.password.text.trim());
-                        // ignore: use_build_context_synchronously
-                        Go.BackTo(context, '/home');
-                      } catch (error) {
+                      await SignInController.instance
+                          .signInUsingEmailAndPassword(
+                              controller.email.text.trim(),
+                              controller.password.text.trim())
+                          .then((value) => Go.To(context, "/home"))
+                          .catchError((error) {
                         Get.snackbar(
                             "Login Error", "Username or password is invalid",
                             snackPosition: SnackPosition.TOP,
                             colorText: Colors.black,
                             backgroundColor: Colors.yellow[400]);
-                      }
+                      });
                     }
                   },
                   child: Text(tLogin.toUpperCase())),

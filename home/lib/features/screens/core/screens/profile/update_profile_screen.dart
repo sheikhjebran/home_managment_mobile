@@ -4,7 +4,6 @@ import 'package:home/constants/image_strings.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:home/constants/text_strings.dart';
 import 'package:home/features/routing/routing.dart';
-import 'package:home/features/screens/core/screens/profile/widget/update_profile_form_widget.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../../../authentication/models/user_model.dart';
@@ -16,6 +15,7 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +37,16 @@ class UpdateProfileScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
-                    UserModel userData = snapshot.data as UserModel;
+                    UserModel user = snapshot.data as UserModel;
+
+                    //Controller
+                    final email = TextEditingController(text: user.email);
+                    final password = TextEditingController(text: user.password);
+                    final phoneNo =
+                        TextEditingController(text: user.phoneNumber);
+                    final fullName = TextEditingController(text: user.fullName);
+                    final id = TextEditingController(text: user.id);
+
                     return Column(
                       children: [
                         SizedBox(
@@ -61,7 +70,79 @@ class UpdateProfileScreen extends StatelessWidget {
                         const SizedBox(height: 30),
                         const Divider(),
                         const SizedBox(height: 10),
-                        UpdateProfileFormWidget(userData: userData),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: tFormHeight - 10),
+                          child: Form(
+                              key: formKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: tFormHeight - 20,
+                                  ),
+                                  TextFormField(
+                                    controller: fullName,
+                                    decoration: const InputDecoration(
+                                        label: Text(tFullName),
+                                        prefixIcon:
+                                            Icon(Icons.person_outline_rounded)),
+                                  ),
+                                  const SizedBox(
+                                    height: tFormHeight - 20,
+                                  ),
+                                  TextFormField(
+                                    controller: email,
+                                    decoration: const InputDecoration(
+                                        label: Text(tEmail),
+                                        prefixIcon: Icon(Icons.email_outlined)),
+                                  ),
+                                  const SizedBox(
+                                    height: tFormHeight - 20,
+                                  ),
+                                  TextFormField(
+                                    controller: phoneNo,
+                                    decoration: const InputDecoration(
+                                        label: Text(tPhoneNumber),
+                                        prefixIcon: Icon(Icons.numbers)),
+                                  ),
+                                  const SizedBox(
+                                    height: tFormHeight - 20,
+                                  ),
+                                  TextFormField(
+                                    readOnly: true,
+                                    obscureText: true,
+                                    controller: password,
+                                    decoration: const InputDecoration(
+                                        label: Text(tPassword),
+                                        prefixIcon: Icon(Icons.fingerprint)),
+                                  ),
+                                  const SizedBox(
+                                    height: tFormHeight - 10,
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () async {
+                                        if (formKey.currentState!.validate()) {
+                                          final userData = UserModel(
+                                              email: email.text.trim(),
+                                              password: password.text.trim(),
+                                              fullName: fullName.text.trim(),
+                                              phoneNumber: phoneNo.text.trim(),
+                                              id: id.text.trim());
+
+                                          await controller
+                                              .updateProfile(userData);
+                                        }
+                                      },
+                                      child:
+                                          Text(tUpdateProfileButton.toString()),
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ),
                       ],
                     );
                   } else if (snapshot.hasError) {
