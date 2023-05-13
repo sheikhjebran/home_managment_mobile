@@ -59,3 +59,27 @@ const String tDelete = "Delete";
 const String tJoined = "Joined";
 const String tJoinedAt = "14 March 2023";
 const String tUpdateProfileButton = "Update Profile";
+
+//- Add Home screen -Text
+const String tAddHome = "Add Home";
+const String tAddHomeTitle = "Enter Home Detail!";
+const String tAddHomeSubTitle = "Add your home Detail to get started.";
+
+const String tHomeLocation = "Home Location";
+const String tHomeFloor = "Home Floor";
+const String tHomeRent = "Home Rent";
+const String tHomePaintingCharges = "Home Painting Charges";
+const String tHomeAdvance = "Home Advance";
+const String tHomeNotes = "Notes";
+const String tHomeAddress = "Home Address";
+
+//- Add Tenent screen -Text
+const String tAddTenent = "Add Tenent";
+const String tAddTenentTitle = "Enter Tenent Detail!";
+const String tAddTenentSubTitle = "Add your tenent Detail to get started.";
+
+const String tTenentName = "Tenent Name";
+const String tTenentNote = "Tenent Note";
+const String tTenentHome = "Tenent Home";
+const String tTenentAdvance = "Tenent Advance";
+const String tTenentRent = "Tenent Rent";
