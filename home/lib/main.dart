@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home/features/screens/core/screens/home/add_home.dart';
+import 'package:home/features/screens/core/screens/tenent/add_tenent.dart';
 import 'features/screens/authentication/screen/forgot_password/foget_password_mail/forget_password_mail.dart';
 import 'features/screens/authentication/screen/forgot_password/forget_password_otp/forget_password_otp.dart';
 import 'features/screens/authentication/screen/forgot_password/forget_password_phone/forget_password_phone.dart';
@@ -42,6 +44,9 @@ class MyApp extends StatelessWidget {
         '/forget_password_otp': (context) => const ForgetPasswordOtpScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/update_profile': (context) => const UpdateProfileScreen(),
+        '/rent': (context) => const Dashboard(),
+        '/add_home': (context) => const AddHomeScreen(),
+        '/add_tenent': (context) => const AddTenentScreen(),
       },
     );
   }

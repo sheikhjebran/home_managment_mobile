@@ -25,9 +25,9 @@ class LoginState extends State<LoginScreen> {
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(tDefaultSize),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 FormHeadderWidget(
                   image: welcomeScreenImage,
                   title: tLoginTitle,

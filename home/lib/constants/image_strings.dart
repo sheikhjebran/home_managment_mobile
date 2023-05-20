@@ -13,3 +13,9 @@ const String tForgetPasswordMale =
 
 // -- Dashboard Screen Images
 const String tPersonIconImage = "images/dashboard/profile/person.png";
+
+// -- Home/Building Screen Images
+const String tAddHomeBuilding = "images/dashboard/home/happy_home.png";
+
+// -- Tenent Screen Images
+const String tAddTenentImage = "images/dashboard/tenent/family.png";

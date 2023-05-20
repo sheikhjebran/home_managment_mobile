@@ -19,24 +19,24 @@ class ProfileScreen extends StatelessWidget {
     Get.lazyPut(() => ProfileController());
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Go.back(context);
-          },
-          icon: const Icon(LineAwesomeIcons.angle_left),
-        ),
-        title: Text(
-          tProfile,
-          style: Theme.of(context).textTheme.displaySmall,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon),
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Go.back(context);
+      //     },
+      //     icon: const Icon(LineAwesomeIcons.angle_left),
+      //   ),
+      //   title: Text(
+      //     tProfile,
+      //     style: Theme.of(context).textTheme.displaySmall,
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {},
+      //       icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon),
+      //     )
+      //   ],
+      // ),
       body: SingleChildScrollView(
         child: Container(
             padding: const EdgeInsets.all(tDefaultSize),
