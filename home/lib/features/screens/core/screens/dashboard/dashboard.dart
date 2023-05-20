@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:home/constants/colors.dart';
-import 'package:home/constants/image_strings.dart';
-import 'package:home/constants/text_strings.dart';
-import 'package:home/features/routing/routing.dart';
 import 'package:home/features/screens/core/screens/home/home.dart';
+import 'package:home/features/screens/core/screens/profile/profile_screen.dart';
 import 'package:home/features/screens/core/screens/rent/rent.dart';
 import 'package:home/features/screens/core/screens/tenent/tenent.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -26,14 +25,13 @@ class _dashBoard extends State<Dashboard> {
     Rent(),
     Home(),
     Tenent(),
-    Text(
-      "Custom4",
-      style: TextStyle(fontSize: 40.0),
-    ),
+    ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -44,14 +42,9 @@ class _dashBoard extends State<Dashboard> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: tCardBgColor),
-            child: IconButton(
-                onPressed: () {
-                  Go.To(context, '/profile');
-                },
-                icon: const Image(image: AssetImage(tPersonIconImage))),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon),
           )
         ],
       ),

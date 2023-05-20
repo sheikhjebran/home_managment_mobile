@@ -19,11 +19,13 @@ class Home extends StatefulWidget {
 // ignore: camel_case_types
 class MainWidget extends State<Home> {
   Future<void> _refresh() async {
-    // Add your refresh logic here, such as fetching new data from a server.
-    // For example:
-    setState(() {
-      // Update your data here, such as setting the state of a list to the new data.
-    });
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refresh();
   }
 
   @override
@@ -43,6 +45,8 @@ class MainWidget extends State<Home> {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (c, index) {
@@ -85,6 +89,7 @@ class MainWidget extends State<Home> {
       ),
       // floating button start
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: "home_floating_action_button",
         onPressed: () {
           Go.To(context, '/add_home');
         },

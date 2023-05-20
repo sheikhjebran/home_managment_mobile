@@ -26,13 +26,13 @@ class CardWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
-        iconColor: Colors.white,
-        tileColor: tSecondaryColor,
+        iconColor: Colors.black,
+        tileColor: Colors.yellow,
         leading: cardIcon,
         title: Text(
           title,
           style: const TextStyle(
-              color: tCardBgColor,
+              color: tSecondaryColor,
               fontWeight: FontWeight.bold,
               fontSize: tCardSubTitleSize),
         ),
@@ -40,11 +40,11 @@ class CardWidget extends StatelessWidget {
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             subTitle,
-            style: const TextStyle(color: tCardBgColor),
+            style: const TextStyle(color: tSecondaryColor),
           ),
           Text(
             titleDescription,
-            style: const TextStyle(color: tCardBgColor),
+            style: const TextStyle(color: tSecondaryColor),
           ),
         ]));
   }

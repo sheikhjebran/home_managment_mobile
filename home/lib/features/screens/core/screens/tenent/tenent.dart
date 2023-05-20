@@ -19,11 +19,13 @@ class Tenent extends StatefulWidget {
 // ignore: camel_case_types
 class MainWidget extends State<Tenent> {
   Future<void> _refresh() async {
-    // Add your refresh logic here, such as fetching new data from a server.
-    // For example:
-    setState(() {
-      // Update your data here, such as setting the state of a list to the new data.
-    });
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refresh();
   }
 
   @override
@@ -43,6 +45,8 @@ class MainWidget extends State<Tenent> {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (c, index) {
@@ -53,7 +57,7 @@ class MainWidget extends State<Tenent> {
                                     "Tenent: ${snapshot.data![index].tenentName}",
                                 subTitle: snapshot.data![index].tenentHome,
                                 titleDescription:
-                                    snapshot.data![index].tenentNote,
+                                    snapshot.data![index].tenentRent.toString(),
                                 snapshot: snapshot,
                                 index: index,
                                 cardIcon: const Icon(LineAwesomeIcons.user_1),
@@ -85,6 +89,7 @@ class MainWidget extends State<Tenent> {
       ),
       // floating button start
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: "tenent_floating_action_button",
         onPressed: () {
           Go.To(context, '/add_tenent');
         },

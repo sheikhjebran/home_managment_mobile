@@ -28,9 +28,9 @@ class AddTenentScreen extends StatelessWidget {
           child: Container(
         padding: const EdgeInsets.symmetric(
             vertical: tFormHeight - 10, horizontal: tFormHeight),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             FormHeadderWidget(
               image: tAddTenentImage,
               title: tAddTenentTitle,
