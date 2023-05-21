@@ -73,6 +73,8 @@ const String tHomeAdvance = "Home Advance";
 const String tHomeNotes = "Notes";
 const String tHomeAddress = "Home Address";
 
+const String tSelectHome = "Select Home";
+
 //- Add Tenent screen -Text
 const String tAddTenent = "Add Tenent";
 const String tAddTenentTitle = "Enter Tenent Detail!";
@@ -83,3 +85,16 @@ const String tTenentNote = "Tenent Note";
 const String tTenentHome = "Tenent Home";
 const String tTenentAdvance = "Tenent Advance";
 const String tTenentRent = "Tenent Rent";
+
+const String tSelectTenent = "Select Tenent";
+//- Add Rent screen -Text
+const String tAddRent = "Add Rent";
+const String tAddRentTitle = "Enter Rent Detail!";
+const String tAddRentSubTitle = "Add your rent Detail to get started.";
+
+const String tRentHome = "Rent Home";
+const String tRenTenent = "Ren Tenent";
+const String tRentAmount = "Rent Amount";
+const String tRentMonth = "Rent Month";
+const String tRentYear = "Rent Year";
+const String tRentRecivedDate = "Rent Recived Date";

@@ -5,7 +5,7 @@ import 'package:home/constants/colors.dart';
 import 'package:home/constants/sizes.dart';
 
 class CardWidget extends StatelessWidget {
-  final title, subTitle, titleDescription;
+  final title, subTitle, titleDescription, dateTimeDescription;
   final AsyncSnapshot snapshot;
   final int index;
   final Icon cardIcon;
@@ -14,6 +14,7 @@ class CardWidget extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.titleDescription,
+    this.dateTimeDescription = Null,
     required this.snapshot,
     required this.index,
     required this.cardIcon,
@@ -46,6 +47,14 @@ class CardWidget extends StatelessWidget {
             titleDescription,
             style: const TextStyle(color: tSecondaryColor),
           ),
+          dateTimeDescription != Null
+              ? Text(
+                  dateTimeDescription,
+                  style: const TextStyle(color: tSecondaryColor),
+                )
+              : const SizedBox(
+                  height: 0,
+                ),
         ]));
   }
 }

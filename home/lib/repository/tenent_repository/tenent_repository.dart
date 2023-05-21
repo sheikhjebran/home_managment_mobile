@@ -33,6 +33,17 @@ class TenentRepository extends GetxController {
     return response;
   }
 
+  Future<TenentModel> getTenentDetail(String id) async {
+    final documentSnapshot = await _db.collection("Tenent").doc(id).get();
+    if (documentSnapshot.exists) {
+      TenentModel tenent =
+          TenentModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+      return tenent;
+    } else {
+      throw Exception('Document does not exist');
+    }
+  }
+
   addTenent(TenentModel tenent) async {
     await _db.collection("Tenent").add(tenent.toJson()).then((value) {
       Get.snackbar("Success", "Your tenent has been added",

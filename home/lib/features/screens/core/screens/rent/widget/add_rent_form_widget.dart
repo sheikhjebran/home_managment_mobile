@@ -4,14 +4,16 @@ import 'package:home/common_widgets/card/formcard.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:home/constants/text_strings.dart';
 import 'package:home/features/routing/routing.dart';
-import 'package:home/features/screens/authentication/models/home_model.dart';
+import 'package:home/features/screens/authentication/models/rent_model.dart';
 import 'package:home/features/screens/authentication/models/tenent_model.dart';
 import 'package:home/features/screens/core/controllers/home_controller.dart';
+import 'package:home/features/screens/core/controllers/rent_controller.dart';
 import 'package:home/features/screens/core/controllers/tenent_controller.dart';
+import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
-class AddTenentFormWidget extends StatefulWidget {
-  const AddTenentFormWidget({
+class AddRentFormWidget extends StatefulWidget {
+  const AddRentFormWidget({
     Key? key,
   }) : super(key: key);
 
@@ -20,16 +22,74 @@ class AddTenentFormWidget extends StatefulWidget {
   MainWidget createState() => MainWidget();
 }
 
-class MainWidget extends State<AddTenentFormWidget> {
+class MainWidget extends State<AddRentFormWidget> {
   final formKey = GlobalKey<FormState>();
   final tenentController = Get.put(TenentController());
   final homeController = Get.put(HomeController());
-  List<dynamic> homeList = [];
+  final rentController = Get.put(RentController());
+  List<dynamic> rentList = [];
+  String? rentId;
+  List<dynamic> tenentList = [];
+  String? tenentId;
+  String? selectedMonth;
+  String? selectedYear;
   String? homeId;
+
+  //- Text editing controller
+  final rentHome = TextEditingController();
+  final rentTenent = TextEditingController();
+  final rentAmount = TextEditingController();
+  final rentMonth = TextEditingController();
+  final rentYear = TextEditingController();
+  final rentRecivedDate = TextEditingController();
+  final rentTenentName = TextEditingController();
+
+  Future<void> _refresh() async {
+    getYear();
+    setState(() {});
+  }
+
+  List<String> month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
+  List<String> year = [];
+
+  Future<void> getYear() async {
+    DateTime now = DateTime.now();
+    int currentYear = now.year;
+
+    year.add(currentYear.toString());
+    year.add((currentYear - 1).toString());
+  }
+
+  String getCurrentDate() {
+    return DateFormat("yyyy-MM-dd").format(DateTime.now());
+  }
+
+  getTenentDetail() async {
+    await tenentController.getTenentDetail(tenentId!).then((value) {
+      homeId = value.tenentHome;
+      rentTenentName.text = value.tenentName;
+      rentAmount.text = value.tenentRent.toString();
+    });
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
+    _refresh();
   }
 
   @override
@@ -44,15 +104,16 @@ class MainWidget extends State<AddTenentFormWidget> {
               const SizedBox(
                 height: tFormHeight - 20,
               ),
-              FutureBuilder<List<HomeModel>>(
-                  future: homeController.getAllHome(),
+              FutureBuilder<List<TenentModel>>(
+                  future: tenentController.getAllTenent(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
-                      homeList = snapshot.data!;
+                      tenentList = snapshot.data!;
                       return FormCard.dropDownWidget(
-                          context, tSelectHome, homeList, homeId,
+                          context, tSelectTenent, tenentList, tenentId,
                           (onChangedValue) {
-                        homeId = onChangedValue;
+                        tenentId = onChangedValue;
+                        getTenentDetail();
                       });
                     } else if (snapshot.hasError) {
                       return Center(
@@ -60,15 +121,17 @@ class MainWidget extends State<AddTenentFormWidget> {
                       );
                     } else {
                       return const Center(
-                        child: Text('SomeThing went wrong'),
-                      );
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ));
                     }
                   }),
               const SizedBox(
                 height: tFormHeight - 20,
               ),
               TextFormField(
-                controller: tenentController.tenentName,
+                controller: rentTenentName,
                 decoration: const InputDecoration(
                     label: Text(tTenentName), prefixIcon: Icon(Icons.person)),
               ),
@@ -76,18 +139,7 @@ class MainWidget extends State<AddTenentFormWidget> {
                 height: tFormHeight - 20,
               ),
               TextFormField(
-                controller: tenentController.tenentAdvance,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(
-                    label: Text(tTenentAdvance),
-                    prefixIcon: Icon(Icons.monetization_on_outlined)),
-              ),
-              const SizedBox(
-                height: tFormHeight - 20,
-              ),
-              TextFormField(
-                controller: tenentController.tenentRent,
+                controller: rentAmount,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
@@ -97,12 +149,17 @@ class MainWidget extends State<AddTenentFormWidget> {
               const SizedBox(
                 height: tFormHeight - 20,
               ),
-              TextFormField(
-                controller: tenentController.tenentNote,
-                decoration: const InputDecoration(
-                    label: Text(tTenentNote),
-                    prefixIcon: Icon(Icons.note_rounded)),
+              FormCard.dropDownSingleWidget(
+                  context, tRentMonth, month, selectedMonth, (onChangedValue) {
+                selectedMonth = onChangedValue;
+              }),
+              const SizedBox(
+                height: tFormHeight - 20,
               ),
+              FormCard.dropDownSingleWidget(
+                  context, tRentYear, year, selectedYear, (onChangedValue) {
+                selectedYear = onChangedValue;
+              }),
               const SizedBox(
                 height: tFormHeight - 10,
               ),
@@ -111,16 +168,14 @@ class MainWidget extends State<AddTenentFormWidget> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      final tenent = TenentModel(
-                        tenentName: tenentController.tenentName.text.trim(),
-                        tenentHome: homeId!,
-                        tenentAdvance: double.parse(
-                            tenentController.tenentAdvance.text.trim()),
-                        tenentRent: double.parse(
-                            tenentController.tenentRent.text.trim()),
-                        tenentNote: tenentController.tenentNote.text.trim(),
-                      );
-                      TenentController.instance.addTenent(tenent).then((value) {
+                      final rent = RentModel(
+                          rentHome: homeId!,
+                          rentTenent: tenentId!,
+                          rentAmount: double.parse(rentAmount.text.trim()),
+                          rentMonth: selectedMonth!,
+                          rentYear: selectedYear!,
+                          rentRecivedDate: getCurrentDate());
+                      RentController.instance.addRent(rent).then((value) {
                         Go.back(context);
                       }).catchError((error) {
                         Get.snackbar("Error", "Something went wrong, Try again",
@@ -130,7 +185,7 @@ class MainWidget extends State<AddTenentFormWidget> {
                       });
                     }
                   },
-                  child: Text(tAddTenent.toUpperCase()),
+                  child: Text(tAddRent.toUpperCase()),
                 ),
               )
             ],
