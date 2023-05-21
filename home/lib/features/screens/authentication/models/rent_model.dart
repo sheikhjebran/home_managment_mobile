@@ -6,7 +6,6 @@ class RentModel {
   final String rentTenent;
   final double rentAmount;
   final String rentMonth;
-  final String rentYear;
   final String rentRecivedDate;
 
   const RentModel({
@@ -15,27 +14,15 @@ class RentModel {
     required this.rentTenent,
     required this.rentAmount,
     required this.rentMonth,
-    required this.rentYear,
     required this.rentRecivedDate,
   });
-  factory RentModel.fromJson(Map<String, dynamic> json) {
-    return RentModel(
-      id: json['id'],
-      rentHome: json["RentHome"],
-      rentTenent: json["RentTenent"],
-      rentAmount: json["RentAmount"],
-      rentMonth: json["RentMonth"],
-      rentYear: json["RentYear"],
-      rentRecivedDate: json["RentRecivedDate"],
-    );
-  }
+
   toJson() {
     return {
       "RentHome": rentHome,
       "RentTenent": rentTenent,
       "RentAmount": rentAmount,
       "RentMonth": rentMonth,
-      "RentYear": rentYear,
       "RentRecivedDate": rentRecivedDate,
     };
   }
@@ -50,7 +37,6 @@ class RentModel {
       rentTenent: data["RentTenent"],
       rentAmount: data["RentAmount"],
       rentMonth: data["RentMonth"],
-      rentYear: data["RentYear"],
       rentRecivedDate: data["RentRecivedDate"],
     );
   }

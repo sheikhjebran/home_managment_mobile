@@ -28,12 +28,11 @@ class FormHeadderWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: crossAxisAlignment,
       children: [
-        Center(
-            child: Image(
+        Image(
           image: AssetImage(image),
           color: imageColor,
           height: size.height * imageHeight,
-        )),
+        ),
         SizedBox(
           height: heightBetween,
         ),

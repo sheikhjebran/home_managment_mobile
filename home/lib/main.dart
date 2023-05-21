@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home/features/screens/core/screens/home/add_home.dart';
-import 'package:home/features/screens/core/screens/rent/add_rent.dart';
 import 'package:home/features/screens/core/screens/tenent/add_tenent.dart';
 import 'features/screens/authentication/screen/forgot_password/foget_password_mail/forget_password_mail.dart';
 import 'features/screens/authentication/screen/forgot_password/forget_password_otp/forget_password_otp.dart';
@@ -48,7 +47,6 @@ class MyApp extends StatelessWidget {
         '/rent': (context) => const Dashboard(),
         '/add_home': (context) => const AddHomeScreen(),
         '/add_tenent': (context) => const AddTenentScreen(),
-        '/add_rent': (context) => const AddRentScreen(),
       },
     );
   }

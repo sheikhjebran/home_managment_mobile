@@ -45,7 +45,6 @@ dependencies:
   google_nav_bar: ^5.0.6
   dropdown_button2: ^2.1.2
   snippet_coder_utils: ^1.0.14
-  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -83,7 +82,6 @@ flutter:
     - images/dashboard/profile/
     - images/dashboard/home/
     - images/dashboard/tenent/
-    - images/dashboard/rent/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

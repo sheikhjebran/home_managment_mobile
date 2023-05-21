@@ -21,19 +21,6 @@ class HomeModel {
     required this.homeAddress,
   });
 
-  factory HomeModel.fromJson(Map<String, dynamic> json) {
-    return HomeModel(
-      id: json['id'],
-      homeLocation: json["HomeLocation"],
-      homeFloor: json["HomeFloor"],
-      homeRent: json["HomeRent"],
-      homePaintingCharges: json["HomePaintingCharges"],
-      homeAdvance: json["HomeAdvance"],
-      homeNotes: json["HomeNotes"],
-      homeAddress: json["HomeAddress"],
-    );
-  }
-
   toJson() {
     return {
       "HomeLocation": homeLocation,

@@ -19,6 +19,3 @@ const String tAddHomeBuilding = "images/dashboard/home/happy_home.png";
 
 // -- Tenent Screen Images
 const String tAddTenentImage = "images/dashboard/tenent/family.png";
-
-// -- Rent Screen Images
-const String tAddRentImage = "images/dashboard/rent/money.png";

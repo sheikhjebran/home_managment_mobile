@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:home/common_widgets/card/view_card.dart';
 import 'package:home/constants/colors.dart';
 import 'package:home/constants/sizes.dart';
-import 'package:home/constants/text_strings.dart';
 import 'package:home/features/routing/routing.dart';
 import 'package:home/features/screens/authentication/models/home_model.dart';
 import 'package:home/features/screens/core/controllers/home_controller.dart';
@@ -95,7 +94,7 @@ class MainWidget extends State<Home> {
           Go.To(context, '/add_home');
         },
         label: const Text(
-          tAddHome,
+          'Add Home',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,

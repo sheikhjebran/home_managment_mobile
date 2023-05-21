@@ -50,7 +50,7 @@ class MainWidget extends State<AddTenentFormWidget> {
                     if (snapshot.connectionState == ConnectionState.done) {
                       homeList = snapshot.data!;
                       return FormCard.dropDownWidget(
-                          context, tSelectHome, homeList, homeId,
+                          context, "Select", homeList, homeId, tenentController,
                           (onChangedValue) {
                         homeId = onChangedValue;
                       });
@@ -64,9 +64,6 @@ class MainWidget extends State<AddTenentFormWidget> {
                       );
                     }
                   }),
-              const SizedBox(
-                height: tFormHeight - 20,
-              ),
               TextFormField(
                 controller: tenentController.tenentName,
                 decoration: const InputDecoration(

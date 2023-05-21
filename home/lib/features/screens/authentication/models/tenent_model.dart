@@ -17,17 +17,6 @@ class TenentModel {
     required this.tenentRent,
   });
 
-  factory TenentModel.fromJson(Map<String, dynamic> json) {
-    return TenentModel(
-      id: json['id'],
-      tenentName: json["TenentName"],
-      tenentNote: json["TenentNote"],
-      tenentHome: json["TenentHome"],
-      tenentAdvance: json["TenentAdvance"],
-      tenentRent: json["TenentRent"],
-    );
-  }
-
   toJson() {
     return {
       "TenentName": tenentName,

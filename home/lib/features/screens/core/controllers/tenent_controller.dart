@@ -19,10 +19,6 @@ class TenentController extends GetxController {
     return await _tenentRepo.getAllTenentDetails();
   }
 
-  Future<TenentModel> getTenentDetail(String id) async {
-    return await _tenentRepo.getTenentDetail(id);
-  }
-
   Future<void> addTenent(TenentModel tenent) async {
     await _tenentRepo.addTenent(tenent);
   }

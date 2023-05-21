@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:home/common_widgets/card/view_card.dart';
 import 'package:home/constants/colors.dart';
 import 'package:home/constants/sizes.dart';
-import 'package:home/constants/text_strings.dart';
 import 'package:home/features/routing/routing.dart';
 import 'package:home/features/screens/authentication/models/tenent_model.dart';
 import 'package:home/features/screens/core/controllers/tenent_controller.dart';
@@ -95,7 +94,7 @@ class MainWidget extends State<Tenent> {
           Go.To(context, '/add_tenent');
         },
         label: const Text(
-          tAddTenent,
+          'Add Tenent',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
