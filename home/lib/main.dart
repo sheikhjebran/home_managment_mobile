@@ -11,6 +11,7 @@ import 'features/screens/authentication/screen/singup/singup.dart';
 import 'features/screens/core/screens/dashboard/dashboard.dart';
 import 'features/screens/core/screens/profile/profile_screen.dart';
 import 'features/screens/core/screens/profile/update_profile_screen.dart';
+import 'features/screens/core/screens/rent/add_rent.dart';
 import 'features/screens/splash/splash_screen.dart';
 import 'features/utils/firebase_options.dart';
 import 'features/utils/theme/theme.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         '/rent': (context) => const Dashboard(),
         '/add_home': (context) => const AddHomeScreen(),
         '/add_tenent': (context) => const AddTenentScreen(),
+        '/add_rent': (context) => const AddRentScreen(),
       },
     );
   }

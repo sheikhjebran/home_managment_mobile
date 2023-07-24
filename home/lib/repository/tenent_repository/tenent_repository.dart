@@ -23,7 +23,8 @@ class TenentRepository extends GetxController {
           response.add(TenentModel(
               id: tenent.id,
               tenentAdvance: tenent.tenentAdvance,
-              tenentHome: "Home:${user.homeLocation} Floor:${user.homeFloor}",
+              tenentHome:
+                  "Home: ${user.homeLocation} \nFloor: ${user.homeFloor}",
               tenentName: tenent.tenentName,
               tenentNote: tenent.tenentNote,
               tenentRent: tenent.tenentRent));

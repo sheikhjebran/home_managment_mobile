@@ -57,7 +57,7 @@ class MainWidget extends State<Tenent> {
                                     "Tenent: ${snapshot.data![index].tenentName}",
                                 subTitle: snapshot.data![index].tenentHome,
                                 titleDescription:
-                                    snapshot.data![index].tenentRent.toString(),
+                                    "Rent : ${snapshot.data![index].tenentRent.toString()}/-",
                                 snapshot: snapshot,
                                 index: index,
                                 cardIcon: const Icon(LineAwesomeIcons.user_1),

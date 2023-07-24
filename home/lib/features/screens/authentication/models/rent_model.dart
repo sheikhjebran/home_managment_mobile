@@ -7,6 +7,7 @@ class RentModel {
   final double rentAmount;
   final String rentMonth;
   final String rentRecivedDate;
+  final String rentYear;
 
   const RentModel({
     this.id,
@@ -14,6 +15,7 @@ class RentModel {
     required this.rentTenent,
     required this.rentAmount,
     required this.rentMonth,
+    required this.rentYear,
     required this.rentRecivedDate,
   });
 
@@ -23,6 +25,7 @@ class RentModel {
       "RentTenent": rentTenent,
       "RentAmount": rentAmount,
       "RentMonth": rentMonth,
+      "RentYear": rentYear,
       "RentRecivedDate": rentRecivedDate,
     };
   }
@@ -37,6 +40,7 @@ class RentModel {
       rentTenent: data["RentTenent"],
       rentAmount: data["RentAmount"],
       rentMonth: data["RentMonth"],
+      rentYear: data["RentYear"],
       rentRecivedDate: data["RentRecivedDate"],
     );
   }

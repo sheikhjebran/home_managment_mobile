@@ -13,12 +13,13 @@ class FormCard {
         child: FormField<dynamic>(builder: (FormFieldState<dynamic> state) {
       return DropdownButton2<dynamic>(
           isExpanded: true,
+          style: Theme.of(context).textTheme.displaySmall,
           hint: Text(
             titleText,
             style: TextStyle(
-              fontSize: 14,
-              color: Theme.of(context).hintColor,
-            ),
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).hintColor),
           ),
           items: iteamList
               .map((item) => DropdownMenuItem(
@@ -40,7 +41,7 @@ class FormCard {
           },
           buttonStyleData: const ButtonStyleData(
             height: 40,
-            width: 200,
+            width: 350,
           ),
           dropdownStyleData: const DropdownStyleData(
             maxHeight: 200,
@@ -70,7 +71,7 @@ class FormCard {
                   hintText: 'Search for an item...',
                   hintStyle: const TextStyle(fontSize: 12),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),

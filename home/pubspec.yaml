@@ -82,6 +82,7 @@ flutter:
     - images/dashboard/profile/
     - images/dashboard/home/
     - images/dashboard/tenent/
+    - images/dashboard/rent/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

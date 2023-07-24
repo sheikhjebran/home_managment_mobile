@@ -39,13 +39,13 @@ class HomeModel {
 
     return HomeModel(
       id: document.id,
-      homeLocation: data["HomeLocation"],
-      homeFloor: data["HomeFloor"],
-      homeRent: data["HomeRent"],
-      homePaintingCharges: data["HomePaintingCharges"],
-      homeAdvance: data["HomeAdvance"],
-      homeNotes: data["HomeNotes"],
-      homeAddress: data["HomeAddress"],
+      homeLocation: data["HomeLocation"].toString(),
+      homeFloor: data["HomeFloor"].toString(),
+      homeRent: data["HomeRent"].toDouble(),
+      homePaintingCharges: data["HomePaintingCharges"].toDouble(),
+      homeAdvance: data["HomeAdvance"].toDouble(),
+      homeNotes: data["HomeNotes"].toString(),
+      homeAddress: data["HomeAddress"].toString(),
     );
   }
 }

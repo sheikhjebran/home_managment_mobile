@@ -83,3 +83,14 @@ const String tTenentNote = "Tenent Note";
 const String tTenentHome = "Tenent Home";
 const String tTenentAdvance = "Tenent Advance";
 const String tTenentRent = "Tenent Rent";
+
+//- Add Rent screen -Text
+const String tAddRent = "Add Rent";
+const String tAddRentTitle = "Enter Rent Detail!";
+const String tAddRentSubTitle = "Add your Rent Detail to get started.";
+
+const String tSelectRentTenent = "Select Rent Tenent";
+const String tSelectRentHome = "Select Rent Home";
+const String tRentYear = "Rent Year";
+const String tRentMonth = "Rent Month";
+const String tRentAmount = "Rent Amount";
