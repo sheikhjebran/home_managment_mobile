@@ -5,6 +5,7 @@ import 'package:home/features/screens/authentication/models/home_model.dart';
 import 'package:home/features/screens/authentication/models/tenent_model.dart';
 
 import '../../features/screens/authentication/models/rent_model.dart';
+import 'package:intl/intl.dart';
 
 class RentRepository extends GetxController {
   static RentRepository get instance => Get.find();
@@ -50,12 +51,21 @@ class RentRepository extends GetxController {
         rentAmount: rent.rentAmount,
         rentMonth: rent.rentMonth,
         rentRecivedDate:
-            "Amount:${rent.rentAmount}/- Date:${rent.rentRecivedDate}",
+            "Amount: ${rent.rentAmount}/- \nDate: ${formatDateTimeToMonthYear(rent.rentRecivedDate)}",
         rentYear: rent.rentYear,
       ));
     }
 
     return response;
+  }
+
+  String formatDateTimeToMonthYear(String dateString) {
+    // Create a DateFormat instance with the desired format
+    DateTime dateTime = DateTime.parse(dateString);
+    final formatter = DateFormat('MMMM yyyy hh:mm a');
+
+    // Use the formatter to format the DateTime value into the desired string format
+    return formatter.format(dateTime);
   }
 
   addRent(RentModel rent) async {
@@ -70,5 +80,23 @@ class RentRepository extends GetxController {
           backgroundColor: Colors.green.withOpacity(0.1),
           colorText: Colors.red);
     });
+  }
+
+  Future<TenentModel> fetchTenentDataForSelectedHome(String homeId) async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
+        .instance
+        .collection("Tenent")
+        .where("TenentHome", isEqualTo: homeId)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+          querySnapshot.docs.first;
+
+      TenentModel tenentModel = TenentModel.fromSnapShot(documentSnapshot);
+      return tenentModel;
+    } else {
+      throw Exception("Tenant data not found for home: $homeId");
+    }
   }
 }

@@ -56,7 +56,7 @@ class MainWidget extends State<Rent> {
                                 title:
                                     "Rent: ${snapshot.data![index].rentTenent}",
                                 subTitle:
-                                    "Month: ${snapshot.data![index].rentMonth} ${snapshot.data![index].rentYear}",
+                                    "Month: ${snapshot.data![index].rentMonth}",
                                 titleDescription: snapshot
                                     .data![index].rentRecivedDate
                                     .toString(),

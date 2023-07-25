@@ -94,3 +94,4 @@ const String tSelectRentHome = "Select Rent Home";
 const String tRentYear = "Rent Year";
 const String tRentMonth = "Rent Month";
 const String tRentAmount = "Rent Amount";
+const String tRentSelectMonth = "Select Month";

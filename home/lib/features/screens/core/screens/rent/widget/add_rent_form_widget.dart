@@ -1,42 +1,79 @@
+import 'dart:math';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home/common_widgets/card/formcard.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:home/constants/text_strings.dart';
 import 'package:home/features/routing/routing.dart';
 import 'package:home/features/screens/authentication/models/home_model.dart';
-import 'package:home/features/screens/authentication/models/tenent_model.dart';
 import 'package:home/features/screens/core/controllers/home_controller.dart';
-import 'package:home/features/screens/core/controllers/tenent_controller.dart';
+import 'package:month_year_picker/month_year_picker.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:month_year_picker/month_year_picker.dart';
+import '../../../../authentication/models/rent_model.dart';
+import '../../../controllers/renent_controller.dart';
+import 'package:intl/intl.dart';
 
-// ignore: must_be_immutable
 class AddRentFormWidget extends StatefulWidget {
   const AddRentFormWidget({
     Key? key,
   }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  MainWidget createState() => MainWidget();
+  MainWidget createState() {
+    return MainWidget();
+  }
 }
 
 class MainWidget extends State<AddRentFormWidget> {
   final formKey = GlobalKey<FormState>();
-  final tenentController = Get.put(TenentController());
+  final rentController = Get.put(RentController());
   final homeController = Get.put(HomeController());
   List<dynamic> homeList = [];
   String? homeId;
-  final List<String> genderItems = [
-    'Male',
-    'Female',
+  String? rentSelectedMonth;
+  var localizationsDelegates = [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    // Add more delegates for other languages if needed
   ];
-
-  String? selectedValue;
+  String selectedRentMonth = tRentSelectMonth;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  DateTime? _selected;
+
+  String formatDateTimeToMonthYear(DateTime dateTime) {
+    // Create a DateFormat instance with the desired format
+    final formatter = DateFormat('MMMM yyyy');
+
+    // Use the formatter to format the DateTime value into the desired string format
+    return formatter.format(dateTime);
+  }
+
+  Future<void> _showCalendar({
+    required BuildContext context,
+    String? locale,
+  }) async {
+    final localeObj = locale != null ? Locale(locale) : null;
+    final selected = await showMonthYearPicker(
+      context: context,
+      initialDate: _selected ?? DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2030),
+      locale: localeObj,
+    );
+    if (selected != null) {
+      setState(() {
+        _selected = selected;
+        rentSelectedMonth = formatDateTimeToMonthYear(selected);
+        selectedRentMonth = "Selected : $rentSelectedMonth";
+      });
+    }
   }
 
   @override
@@ -51,16 +88,80 @@ class MainWidget extends State<AddRentFormWidget> {
               const SizedBox(
                 height: tFormHeight - 20,
               ),
+              SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => _showCalendar(context: context),
+                    child: Text(selectedRentMonth.toUpperCase()),
+                  )),
+              const SizedBox(
+                height: tFormHeight - 20,
+              ),
               FutureBuilder<List<HomeModel>>(
                   future: homeController.getAllHome(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       homeList = snapshot.data!;
-                      return FormCard.dropDownWidget(
-                          context, "Select", homeList, homeId, tenentController,
-                          (onChangedValue) {
-                        homeId = onChangedValue;
-                      });
+                      return DropdownButtonFormField2<String>(
+                        isExpanded: true,
+                        decoration: InputDecoration(
+                          // Add Horizontal padding using menuItemStyleData.padding so it matches
+                          // the menu padding when button's width is not specified.
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          // Add more decoration..
+                        ),
+                        hint: const Text(
+                          'Select Tenent',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        items: homeList
+                            .map((item) => DropdownMenuItem(
+                                  value: item.id.toString(),
+                                  child: Text(
+                                    "${item.homeLocation} : ${item.homeFloor}",
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please select Tenent.';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          homeId = value.toString();
+                          rentController
+                              .fetchTenentDataForSelectedHome(homeId!);
+                        },
+                        onSaved: (value) {
+                          homeId = value.toString();
+                        },
+                        buttonStyleData: const ButtonStyleData(
+                          padding: EdgeInsets.only(right: 8),
+                        ),
+                        iconStyleData: const IconStyleData(
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black45,
+                          ),
+                          iconSize: 24,
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        menuItemStyleData: const MenuItemStyleData(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                        ),
+                      );
                     } else if (snapshot.hasError) {
                       return Center(
                         child: Text(snapshot.error.toString()),
@@ -74,67 +175,19 @@ class MainWidget extends State<AddRentFormWidget> {
               const SizedBox(
                 height: tFormHeight - 20,
               ),
-              DropdownButtonFormField2<String>(
-                isExpanded: true,
-                decoration: InputDecoration(
-                  // Add Horizontal padding using menuItemStyleData.padding so it matches
-                  // the menu padding when button's width is not specified.
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  // Add more decoration..
-                ),
-                hint: const Text(
-                  'Select Your Gender',
-                  style: TextStyle(fontSize: 14),
-                ),
-                items: genderItems
-                    .map((item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style: const TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                        ))
-                    .toList(),
-                validator: (value) {
-                  if (value == null) {
-                    return 'Please select gender.';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  //Do something when selected item is changed.
-                },
-                onSaved: (value) {
-                  selectedValue = value.toString();
-                },
-                buttonStyleData: const ButtonStyleData(
-                  padding: EdgeInsets.only(right: 8),
-                ),
-                iconStyleData: const IconStyleData(
-                  icon: Icon(
-                    Icons.arrow_drop_down,
-                    color: Colors.black45,
-                  ),
-                  iconSize: 24,
-                ),
-                dropdownStyleData: DropdownStyleData(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                menuItemStyleData: const MenuItemStyleData(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                ),
-              ),
               TextFormField(
-                controller: tenentController.tenentName,
+                controller: rentController.rentTenent,
                 decoration: const InputDecoration(
                     label: Text(tTenentName), prefixIcon: Icon(Icons.person)),
+              ),
+              const SizedBox(
+                height: tFormHeight - 20,
+              ),
+              TextFormField(
+                controller: rentController.rentAmount,
+                decoration: const InputDecoration(
+                    label: Text(tTenentRent),
+                    prefixIcon: Icon(Icons.attach_money)),
               ),
               const SizedBox(
                 height: tFormHeight - 10,
@@ -144,16 +197,17 @@ class MainWidget extends State<AddRentFormWidget> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      final tenent = TenentModel(
-                        tenentName: tenentController.tenentName.text.trim(),
-                        tenentHome: homeId!,
-                        tenentAdvance: double.parse(
-                            tenentController.tenentAdvance.text.trim()),
-                        tenentRent: double.parse(
-                            tenentController.tenentRent.text.trim()),
-                        tenentNote: tenentController.tenentNote.text.trim(),
+                      final rent = RentModel(
+                        rentTenent: rentController.rentTenentId.text.trim(),
+                        rentHome: homeId!,
+                        rentAmount:
+                            double.parse(rentController.rentAmount.text.trim()),
+                        rentMonth: rentSelectedMonth.toString(),
+                        rentRecivedDate: DateTime.now().toString(),
+                        rentYear: rentSelectedMonth.toString(),
                       );
-                      TenentController.instance.addTenent(tenent).then((value) {
+
+                      RentController.instance.addRent(rent).then((value) {
                         Go.back(context);
                       }).catchError((error) {
                         Get.snackbar("Error", "Something went wrong, Try again",
