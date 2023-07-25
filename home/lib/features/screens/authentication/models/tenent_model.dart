@@ -29,15 +29,22 @@ class TenentModel {
 
   factory TenentModel.fromSnapShot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    final data = document.data()!;
+    final data = document.data();
+
+    if (data == null) {
+      // Handle the case when data is null
+      // You might want to return a default TenentModel or throw an exception
+      throw Exception("Document data is null");
+    }
 
     return TenentModel(
       id: document.id,
-      tenentName: data["TenentName"],
-      tenentNote: data["TenentNote"],
-      tenentHome: data["TenentHome"],
-      tenentAdvance: data["TenentAdvance"],
-      tenentRent: data["TenentRent"],
+      tenentName:
+          data["TenentName"] ?? '', // Provide a default value if data is null
+      tenentNote: data["TenentNote"] ?? '',
+      tenentHome: data["TenentHome"] ?? '',
+      tenentAdvance: data["TenentAdvance"] ?? 0.0,
+      tenentRent: data["TenentRent"] ?? 0.0,
     );
   }
 }

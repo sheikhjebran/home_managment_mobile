@@ -15,6 +15,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     Get.lazyPut(() => ProfileController());
 

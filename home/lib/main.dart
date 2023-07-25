@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home/features/screens/core/screens/home/add_home.dart';
@@ -11,10 +12,13 @@ import 'features/screens/authentication/screen/singup/singup.dart';
 import 'features/screens/core/screens/dashboard/dashboard.dart';
 import 'features/screens/core/screens/profile/profile_screen.dart';
 import 'features/screens/core/screens/profile/update_profile_screen.dart';
+import 'features/screens/core/screens/rent/add_rent.dart';
 import 'features/screens/splash/splash_screen.dart';
 import 'features/utils/firebase_options.dart';
 import 'features/utils/theme/theme.dart';
 import 'repository/authentication_repository/authentication_repository.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:month_year_picker/month_year_picker.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +32,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      localizationsDelegates: const [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        MonthYearPickerLocalizations.delegate
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // English
+      ],
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,
@@ -47,6 +59,7 @@ class MyApp extends StatelessWidget {
         '/rent': (context) => const Dashboard(),
         '/add_home': (context) => const AddHomeScreen(),
         '/add_tenent': (context) => const AddTenentScreen(),
+        '/add_rent': (context) => const AddRentScreen(),
       },
     );
   }
