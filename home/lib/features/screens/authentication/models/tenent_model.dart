@@ -39,12 +39,11 @@ class TenentModel {
 
     return TenentModel(
       id: document.id,
-      tenentName:
-          data["TenentName"] ?? '', // Provide a default value if data is null
-      tenentNote: data["TenentNote"] ?? '',
-      tenentHome: data["TenentHome"] ?? '',
-      tenentAdvance: data["TenentAdvance"] ?? 0.0,
-      tenentRent: data["TenentRent"] ?? 0.0,
+      tenentName: data["TenentName"].toString(),
+      tenentNote: data["TenentNote"].toString(),
+      tenentHome: data["TenentHome"].toString(),
+      tenentAdvance: data["TenentAdvance"].toDouble() ?? 0.0,
+      tenentRent: data["TenentRent"].toDouble() ?? 0.0,
     );
   }
 }

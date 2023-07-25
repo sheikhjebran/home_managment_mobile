@@ -36,12 +36,12 @@ class RentModel {
 
     return RentModel(
       id: document.id,
-      rentHome: data["RentHome"],
-      rentTenent: data["RentTenent"],
-      rentAmount: data["RentAmount"],
-      rentMonth: data["RentMonth"],
-      rentYear: data["RentYear"],
-      rentRecivedDate: data["RentRecivedDate"],
+      rentHome: data["RentHome"].toString(),
+      rentTenent: data["RentTenent"].toString(),
+      rentAmount: data["RentAmount"].toDouble(),
+      rentMonth: data["RentMonth"].toString(),
+      rentYear: data["RentYear"].toString(),
+      rentRecivedDate: data["RentRecivedDate"].toString(),
     );
   }
 }
