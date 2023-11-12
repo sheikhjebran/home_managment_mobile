@@ -9,6 +9,8 @@ class CardWidget extends StatelessWidget {
   final AsyncSnapshot snapshot;
   final int index;
   final Icon cardIcon;
+  final Function onTap;
+
   const CardWidget({
     Key? key,
     required this.title,
@@ -17,11 +19,15 @@ class CardWidget extends StatelessWidget {
     required this.snapshot,
     required this.index,
     required this.cardIcon,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+        onTap: () {
+          return onTap(index);
+        },
         contentPadding: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

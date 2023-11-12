@@ -73,6 +73,11 @@ const String tHomeAdvance = "Home Advance";
 const String tHomeNotes = "Notes";
 const String tHomeAddress = "Home Address";
 
+//- Edit Home screen -Text
+const String tEditHome = "Edit Home";
+const String tEditHomeTitle = "Edit Home Detail!";
+const String tEditHomeSubTitle = "Edit your Home Detail.";
+
 //- Add Tenent screen -Text
 const String tAddTenent = "Add Tenent";
 const String tAddTenentTitle = "Enter Tenent Detail!";

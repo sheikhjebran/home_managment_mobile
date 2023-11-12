@@ -6,6 +6,7 @@ import 'package:home/constants/sizes.dart';
 import 'package:home/features/routing/routing.dart';
 import 'package:home/features/screens/authentication/models/home_model.dart';
 import 'package:home/features/screens/core/controllers/home_controller.dart';
+import 'package:home/features/screens/core/screens/home/edit_home.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Home extends StatefulWidget {
@@ -61,6 +62,18 @@ class MainWidget extends State<Home> {
                                 snapshot: snapshot,
                                 index: index,
                                 cardIcon: const Icon(LineAwesomeIcons.home),
+                                onTap: (index) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditHomeScreen(),
+                                      settings: RouteSettings(
+                                        arguments: snapshot.data![index],
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                               const SizedBox(
                                 height: tFormHeight - 20,

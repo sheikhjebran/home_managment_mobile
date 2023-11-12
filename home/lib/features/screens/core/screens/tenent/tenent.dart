@@ -61,6 +61,9 @@ class MainWidget extends State<Tenent> {
                                 snapshot: snapshot,
                                 index: index,
                                 cardIcon: const Icon(LineAwesomeIcons.user_1),
+                                onTap: (index) {
+                                  print("This is my index present = ${index}");
+                                },
                               ),
                               const SizedBox(
                                 height: tFormHeight - 20,

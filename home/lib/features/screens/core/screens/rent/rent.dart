@@ -64,6 +64,9 @@ class MainWidget extends State<Rent> {
                                 index: index,
                                 cardIcon: const Icon(
                                     LineAwesomeIcons.alternate_money_bill),
+                                onTap: (index) {
+                                  print("This is my index present = ${index}");
+                                },
                               ),
                               const SizedBox(
                                 height: tFormHeight - 20,

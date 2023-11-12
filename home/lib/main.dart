@@ -10,6 +10,7 @@ import 'features/screens/authentication/screen/forgot_password/forget_password_p
 import 'features/screens/authentication/screen/login/login_screen.dart';
 import 'features/screens/authentication/screen/singup/singup.dart';
 import 'features/screens/core/screens/dashboard/dashboard.dart';
+import 'features/screens/core/screens/home/edit_home.dart';
 import 'features/screens/core/screens/profile/profile_screen.dart';
 import 'features/screens/core/screens/profile/update_profile_screen.dart';
 import 'features/screens/core/screens/rent/add_rent.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
         '/update_profile': (context) => const UpdateProfileScreen(),
         '/rent': (context) => const Dashboard(),
         '/add_home': (context) => const AddHomeScreen(),
+        '/edit_home': (context) => const EditHomeScreen(),
         '/add_tenent': (context) => const AddTenentScreen(),
         '/add_rent': (context) => const AddRentScreen(),
       },
