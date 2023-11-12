@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../repository/rent_repository/rent_repository.dart';
 import '../../authentication/models/rent_model.dart';
-import '../../authentication/models/tenent_model.dart';
 
 class RentController extends GetxController {
   static RentController get instance => Get.find();

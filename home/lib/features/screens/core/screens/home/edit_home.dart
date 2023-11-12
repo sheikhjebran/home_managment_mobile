@@ -37,7 +37,7 @@ class EditHomeScreen extends StatelessWidget {
           children: [
             FormHeadderWidget(
               image: tAddHomeBuilding,
-              title: "${tEditHomeTitle} - ${homeModel.homeLocation}",
+              title: "$tEditHomeTitle - ${homeModel.homeLocation}",
               subTitle: tEditHomeSubTitle,
               imageHeight: 0.3,
             ),
