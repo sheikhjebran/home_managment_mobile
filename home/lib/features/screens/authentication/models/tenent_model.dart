@@ -7,9 +7,11 @@ class TenentModel {
   final String tenentHome;
   final double tenentAdvance;
   final double tenentRent;
+  String tenentStatus = "Active";
 
-  const TenentModel({
+  TenentModel({
     this.id,
+    this.tenentStatus = "Active",
     required this.tenentName,
     required this.tenentNote,
     required this.tenentHome,
@@ -24,6 +26,7 @@ class TenentModel {
       "TenentHome": tenentHome,
       "TenentAdvance": tenentAdvance,
       "TenentRent": tenentRent,
+      "TenentStatus": tenentStatus
     };
   }
 
@@ -39,6 +42,7 @@ class TenentModel {
 
     return TenentModel(
       id: document.id,
+      tenentStatus: data["TenentStatus"].toString(),
       tenentName: data["TenentName"].toString(),
       tenentNote: data["TenentNote"].toString(),
       tenentHome: data["TenentHome"].toString(),

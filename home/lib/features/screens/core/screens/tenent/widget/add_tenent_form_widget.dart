@@ -49,9 +49,8 @@ class MainWidget extends State<AddTenentFormWidget> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       homeList = snapshot.data!;
-                      return FormCard.dropDownWidget(
-                          context, "Select", homeList, homeId, tenentController,
-                          (onChangedValue) {
+                      return FormCard.dropDownWidget(context, "Select Home",
+                          homeList, homeId, tenentController, (onChangedValue) {
                         homeId = onChangedValue;
                       });
                     } else if (snapshot.hasError) {
@@ -64,6 +63,9 @@ class MainWidget extends State<AddTenentFormWidget> {
                       );
                     }
                   }),
+              const SizedBox(
+                height: tFormHeight - 20,
+              ),
               TextFormField(
                 controller: tenentController.tenentName,
                 decoration: const InputDecoration(

@@ -80,6 +80,7 @@ const String tEditHomeSubTitle = "Edit your Home Detail.";
 
 //- Add Tenent screen -Text
 const String tAddTenent = "Add Tenent";
+const String tEditTenent = "Edit Tenent";
 const String tAddTenentTitle = "Enter Tenent Detail!";
 const String tAddTenentSubTitle = "Add your tenent Detail to get started.";
 

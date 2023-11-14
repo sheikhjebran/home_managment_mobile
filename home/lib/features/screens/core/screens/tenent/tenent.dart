@@ -61,8 +61,12 @@ class MainWidget extends State<Tenent> {
                                 snapshot: snapshot,
                                 index: index,
                                 cardIcon: const Icon(LineAwesomeIcons.user_1),
-                                onTap: (index) {
-                                  print("This is my index present = ${index}");
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    "/edit_tenent",
+                                    arguments: {'id': snapshot.data![index].id},
+                                  );
                                 },
                               ),
                               const SizedBox(

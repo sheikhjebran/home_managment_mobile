@@ -22,4 +22,8 @@ class TenentController extends GetxController {
   Future<void> addTenent(TenentModel tenent) async {
     await _tenentRepo.addTenent(tenent);
   }
+
+  Future<void> deleteTenent(id) async {
+    await _tenentRepo.deleteTenent(id);
+  }
 }

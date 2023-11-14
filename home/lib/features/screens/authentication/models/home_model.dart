@@ -9,9 +9,11 @@ class HomeModel {
   final double homeAdvance;
   final String homeNotes;
   final String homeAddress;
+  String homeStatus = "Available";
 
-  const HomeModel({
+  HomeModel({
     this.id,
+    this.homeStatus = "Available",
     required this.homeLocation,
     required this.homeFloor,
     required this.homeRent,
@@ -30,6 +32,7 @@ class HomeModel {
       "HomeAdvance": homeAdvance,
       "HomeNotes": homeNotes,
       "HomeAddress": homeAddress,
+      "HomeStatus": homeStatus
     };
   }
 
@@ -39,6 +42,7 @@ class HomeModel {
 
     return HomeModel(
       id: document.id,
+      homeStatus: data["HomeStatus"].toString(),
       homeLocation: data["HomeLocation"].toString(),
       homeFloor: data["HomeFloor"].toString(),
       homeRent: data["HomeRent"].toDouble(),

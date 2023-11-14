@@ -47,4 +47,13 @@ class TenentRepository extends GetxController {
           colorText: Colors.red);
     });
   }
+
+  deleteTenent(String id) async {
+    // Get the collection reference.
+    final CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection('Tenent');
+
+    // Delete the collection.
+    await collectionRef.doc(id).delete();
+  }
 }

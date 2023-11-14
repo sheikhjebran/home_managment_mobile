@@ -11,75 +11,60 @@ class FormCard {
       Function onChanged) {
     return DropdownButtonHideUnderline(
         child: FormField<dynamic>(builder: (FormFieldState<dynamic> state) {
-      return DropdownButton2<dynamic>(
-          isExpanded: true,
-          style: Theme.of(context).textTheme.displaySmall,
-          hint: Text(
-            titleText,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).hintColor),
+      return DropdownButtonFormField2<String>(
+        isExpanded: true,
+        decoration: InputDecoration(
+          // Add Horizontal padding using menuItemStyleData.padding so it matches
+          // the menu padding when button's width is not specified.
+          contentPadding: const EdgeInsets.symmetric(vertical: 16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-          items: iteamList
-              .map((item) => DropdownMenuItem(
-                    value: item.id.toString(),
-                    child: Text(
-                      "${item.homeLocation} : ${item.homeFloor}",
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
+          // Add more decoration..
+        ),
+        hint: Text(
+          titleText,
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).hintColor),
+        ),
+        items: iteamList
+            .map((item) => DropdownMenuItem(
+                  value: item.id.toString(),
+                  child: Text(
+                    "${item.homeLocation} : ${item.homeFloor}",
+                    style: const TextStyle(
+                      fontSize: 14,
                     ),
-                  ))
-              .toList(),
-          value: selectedIteam,
-          onChanged: (newValue) {
-            selectedIteam = newValue as String;
-            state.didChange(newValue);
-            // ignore: void_checks
-            return onChanged(newValue);
-          },
-          buttonStyleData: const ButtonStyleData(
-            height: 40,
-            width: 350,
-          ),
-          dropdownStyleData: const DropdownStyleData(
-            maxHeight: 200,
-          ),
-          menuItemStyleData: const MenuItemStyleData(
-            height: 40,
-          ),
-          dropdownSearchData: DropdownSearchData(
-            searchInnerWidgetHeight: 50,
-            searchInnerWidget: Container(
-              height: 50,
-              padding: const EdgeInsets.only(
-                top: 8,
-                bottom: 4,
-                right: 8,
-                left: 8,
-              ),
-              child: TextFormField(
-                expands: true,
-                maxLines: null,
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8,
                   ),
-                  hintText: 'Search for an item...',
-                  hintStyle: const TextStyle(fontSize: 12),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
-            ),
-            searchMatchFn: (item, searchValue) {
-              return (item.value.toString().contains(searchValue));
-            },
-          ));
+                ))
+            .toList(),
+        value: selectedIteam,
+        validator: (value) {
+          if (value == null) {
+            return 'Please select.';
+          }
+          return null;
+        },
+        onChanged: (newValue) {
+          selectedIteam = newValue as String;
+          state.didChange(newValue);
+          // ignore: void_checks
+          return onChanged(newValue);
+        },
+        buttonStyleData: const ButtonStyleData(
+          padding: EdgeInsets.only(right: 8),
+        ),
+        dropdownStyleData: DropdownStyleData(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        menuItemStyleData: const MenuItemStyleData(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+        ),
+      );
     }));
   }
 }
