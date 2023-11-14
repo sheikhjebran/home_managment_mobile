@@ -62,7 +62,7 @@ class MainWidget extends State<Tenent> {
                                 index: index,
                                 cardIcon: const Icon(LineAwesomeIcons.user_1),
                                 onTap: (index) {
-                                  print("This is my index present = ${index}");
+                                  print("This is my index present = $index");
                                 },
                               ),
                               const SizedBox(
