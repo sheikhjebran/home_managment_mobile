@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home/common_widgets/card/view_card.dart';
+import 'package:home/common_widgets/card/dismissable_card.dart';
 import 'package:home/constants/colors.dart';
 import 'package:home/constants/sizes.dart';
 import 'package:home/features/routing/routing.dart';

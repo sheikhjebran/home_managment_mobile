@@ -15,19 +15,21 @@ class TenentRepository extends GetxController {
     List<TenentModel> response = [];
 
     for (var tenent in tenentData) {
-      final userSnapshot = await _db.collection("Home").get();
-      final userData =
-          userSnapshot.docs.map((e) => HomeModel.fromSnapShot(e)).toList();
-      for (var user in userData) {
-        if (tenent.tenentHome == user.id) {
-          response.add(TenentModel(
-              id: tenent.id,
-              tenentAdvance: tenent.tenentAdvance,
-              tenentHome:
-                  "Home: ${user.homeLocation} \nFloor: ${user.homeFloor}",
-              tenentName: tenent.tenentName,
-              tenentNote: tenent.tenentNote,
-              tenentRent: tenent.tenentRent));
+      if (tenent.tenentStatus == "Active") {
+        final userSnapshot = await _db.collection("Home").get();
+        final userData =
+            userSnapshot.docs.map((e) => HomeModel.fromSnapShot(e)).toList();
+        for (var user in userData) {
+          if (tenent.tenentHome == user.id) {
+            response.add(TenentModel(
+                id: tenent.id,
+                tenentAdvance: tenent.tenentAdvance,
+                tenentHome:
+                    "Home: ${user.homeLocation} \nFloor: ${user.homeFloor}",
+                tenentName: tenent.tenentName,
+                tenentNote: tenent.tenentNote,
+                tenentRent: tenent.tenentRent));
+          }
         }
       }
     }

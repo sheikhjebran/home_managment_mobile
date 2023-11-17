@@ -14,10 +14,9 @@ class EditTenentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ModalRoute? currentRoute = ModalRoute.of(context);
     Map<String, dynamic> arguments;
-    String id;
     if (currentRoute!.settings.arguments != null) {
       arguments = currentRoute.settings.arguments as Map<String, dynamic>;
-      id = arguments['id'];
+      String id = arguments['id'];
     }
 
     return Scaffold(
